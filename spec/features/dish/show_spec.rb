@@ -10,6 +10,8 @@ RSpec.describe "Dish Show Page" do
          @red_pepper = Ingredient.create!(name: "Red Bell Pepper", calories: 30)
          @oil = Ingredient.create!(name: "Cooking Oil", calories: 50)
 
+         @onion = Ingredient.create!(name: "Yellow Onions", calories: 40)
+
          ingredient_dish_1 = IngredientDish.create(ingredient_id: @jasmine_rice.id, dish_id: @dish_1.id)
          ingredient_dish_2 = IngredientDish.create(ingredient_id: @red_pepper.id, dish_id: @dish_1.id)
          ingredient_dish_3 = IngredientDish.create(ingredient_id: @oil.id, dish_id: @dish_1.id)
@@ -33,6 +35,23 @@ RSpec.describe "Dish Show Page" do
          within "#chef_developer" do
             expect(page).to have_content("Jack S.")
          end
+      end
+
+      it 'Displays a form to add a ingredient to that dish' do
+         visit dish_path(@dish_1)
+
+         expect(page).to have_content("Add Ingredient")
+
+         within "#add_ingredient" do
+
+            fill_in("dish[ingredient_id]", with: @onion.id)
+
+            click_on "Add Ingredient"
+
+            expect(current_path).to eq(dish_path(@dish_1))
+         end
+
+         expect(page).to have_content("Total Calories: 350")
       end
    end
 end
