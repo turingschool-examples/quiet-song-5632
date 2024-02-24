@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :dishes, only: [:show]
   post "/dishes/:id/ingredients", to: "ingredient_dishes#create", as: :ingredient_dish
+  delete "/dishes/:id/ingredients", to: "ingredient_dishes#destroy", as: :destroy_ingredient_dish
 
   resources :chefs, only: [:show] do
     resources :ingredients, only: [:index]

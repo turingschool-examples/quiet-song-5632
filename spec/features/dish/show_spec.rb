@@ -53,5 +53,22 @@ RSpec.describe "Dish Show Page" do
 
          expect(page).to have_content("Total Calories: 350")
       end
+
+      it 'has a button next to each ingredient to delete that ingredient from a dish' do
+         visit dish_path(@dish_1)
+
+         within "#ingredients" do
+            expect(page).to have_button("Delete")
+            expect(page).to have_content("Cooking Oil")
+
+            within "#ingredient_#{@oil.id}" do
+               click_on "Delete"
+               expect(current_path).to eq(dish_path(@dish_1))
+            end
+            
+            expect(page).to_not have_content("Cooking Oil")
+            save_and_open_page
+         end
+      end
    end
 end

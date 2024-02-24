@@ -5,7 +5,14 @@
 <div id="ingredients">
    <ul>
    <% @dish.ingredients.each do |ingredient| %>
+      <div id="ingredient_<%= ingredient.id %>">
       <li><%= ingredient.name %></li>
+      <%= form_with model: @dish, url: destroy_ingredient_dish_path(@dish), method: :delete do |form| %>
+         <%= form.hidden_field :ingredient_id, value: ingredient.id %>
+         <%= form.button "Delete", formmethod: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
+      </div>
+      <p>-</p>
    <% end %>
    </ul>
 </div>

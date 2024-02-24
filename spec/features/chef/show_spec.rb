@@ -30,7 +30,6 @@ RSpec.describe "Chef Show Page" do
          expect(page).to have_content("Red Bell Pepper")
          expect(page).to have_content("Cooking Oil")
          expect(page).to_not have_content("Yellow Onions")
-         save_and_open_page
       end
    end
 end
