@@ -17,3 +17,11 @@
 <div id="chef_developer">
    <h4>Author: <%= @dish.chef.name %></h4>
 </div>
+
+<div id="add_ingredient">
+   <%= form_with model: @dish, url: ingredient_dish_path(@dish), method: :post do |f| %>
+      <%= f.label :ingredient_id, "Add Ingredient to Dish:" %>
+      <%= f.number_field :ingredient_id %>
+      <%= f.submit "Add Ingredient" %>
+   <% end %>
+</div>
