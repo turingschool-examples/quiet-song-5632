@@ -15,12 +15,22 @@ RSpec.describe "Chef Show Page" do
          ingredient_dish_1 = IngredientDish.create(ingredient_id: @jasmine_rice.id, dish_id: @dish_1.id)
          ingredient_dish_2 = IngredientDish.create(ingredient_id: @red_pepper.id, dish_id: @dish_1.id)
          ingredient_dish_3 = IngredientDish.create(ingredient_id: @oil.id, dish_id: @dish_1.id)
+
       end
 
       it 'displays a link to view all the ingredients this chef uses in their dishes' do
          visit chef_path(@chef_1)
 
          expect(page).to have_link("Chef's Ingredients", href: chef_ingredients_path(@chef_1))
+
+         click_on "Chef's Ingredients"
+
+         expect(current_path).to eq(chef_ingredients_path(@chef_1))
+         expect(page).to have_content("Jasmine Rice")
+         expect(page).to have_content("Red Bell Pepper")
+         expect(page).to have_content("Cooking Oil")
+         expect(page).to_not have_content("Yellow Onions")
+         save_and_open_page
       end
    end
 end
