@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  resources :dishes, only: [:show]  
+  resources :dishes, only: [:show]
+  post "/dishes/:id", to: "dishes#create"
 end
