@@ -1,0 +1,11 @@
+<h1><%= @dish.name %></h1>
+<h3><%= @dish.name %>'s Description</h3>
+<p><%=@dish.description%></p>
+<h3>Ingredients used in this dish:</h3>
+<%@dish.ingredients.each do |ingredient|%>
+  <ul>
+    <li><%= ingredient.name %></li> 
+    <li><%= ingredient.calories %></li>
+  </ul>
+<% end %>
+<p>This dish was created by <%= @dish.chef.name %></p>
