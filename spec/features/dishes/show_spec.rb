@@ -9,19 +9,30 @@ RSpec.describe 'Dishes Show Page', type: :feature do
 
       @ingredient_1 = Ingredient.create!({name: "Potato", calories: 55})
       @ingredient_2 = Ingredient.create!({name: "Heavy Cream", calories: 145})
+      @ingredient_3 = Ingredient.create!({name: "Ricotta Cheese", calories: 200})
 
       @dish_ingredient_1 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_1.id})
       @dish_ingredient_2 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_2.id})
+
+      visit dish_path(@dish_1)
     end
 
-    it 'I see the dish name, description, list of ingredients, total calorie count and the chef of the dish' do
-      visit dish_path(@dish_1)
-
+    it 'shows the dish name, description, list of ingredients, total calorie count and the chef of the dish' do
       expect(page).to have_content("Name: #{@dish_1.name}")
       expect(page).to have_content("Description: #{@dish_1.description}")
       expect(page).to have_content("Dish Ingredients: Potato, Heavy Cream")
       expect(page).to have_content("Dish Calories: 200")
       expect(page).to have_content("Created by: #{@chef_1.name}")
+    end
+
+    it 'has a form to add an existing ingredient to the dish and when submitted with an existing ingredient id, it returns to the show page and shows the new ingredient added to it' do
+      expect(page).to have_field("ingredient_id")
+
+      fill_in("ingredient_id", with: "#{@ingredient_3.id}")
+      click_on("Submit")
+
+      expect(current_path).to eq(dish_path(@dish_1))
+      expect(page).to have_content("Ricotta Cheese")
     end
   end
 end
