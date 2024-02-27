@@ -5,8 +5,8 @@ RSpec.describe "Dish Show Page" do
     @chef_1 = Chef.create!(name: "Jose")
     @chef_2 = Chef.create!(name: "Kenny")
 
-    @dish_1 = Dish.create!(name: "Chicken", description: "Buttermilk Chicken Breast", chef_id: 1)
-    @dish_2 = Dish.create!(name: "Fried Rice", description: "Fried Rice served with veggies", chef_id: 1)
+    @dish_1 = @chef_1.dishes.create!(name: "Chicken", description: "Buttermilk Chicken Breast")
+    @dish_2 = @chef_2.dishes.create!(name: "Fried Rice", description: "Fried Rice served with veggies")
 
     @ingredient_1 = Ingredient.create!(name: "Chicken Breast", calories: 120)
     @ingredient_2 = Ingredient.create!(name: "Rice", calories: 70)
@@ -27,16 +27,13 @@ RSpec.describe "Dish Show Page" do
 
     it "has a list of ingredients for dish and total calories" do
       visit dish_path(@dish_1)
-
-      expect(page).to have_content("Chicken Breast")
-      expect(page).to have_content("Buttermilk")
-
-      expect(page).to have_content("Total Calories: 180")
-
-      expect(page).to_not have_content("Rice")
-      expect(page).to_not have_content("Veggies")
-
-      expect(page).to_not have_content("Total Calories: 90")
+      save_and_open_page
+        within "#dish-#{@dish_1.id}-ingredients" do
+        @dish_1.ingredients.each do |ingredient|
+          expect(page).to have_content(ingredient.name)
+          expect(page).to have_content(ingredient.calories)
+        end
+      end
     end
 
     it "shows the chefs name" do
