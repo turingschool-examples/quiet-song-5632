@@ -6,7 +6,8 @@ Rails.application.routes.draw do
 	end
 
 	resources :chefs, only: [:show] do
-		# Nested route to show dishes for a chef
-		resources :dishes, only: [:index] 
+		# Nested route to show things for a chef
+		resources :dishes, only: [:index]
+		resources :ingredients, only: [:index] # do i need this?
 	end
 end

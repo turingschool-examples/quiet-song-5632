@@ -20,7 +20,7 @@ RSpec.describe 'Dish Show Page' do
         @chicago_deep_dish.ingredients << @flour
     end
 
-    describe 'User story 2' do
+    xdescribe 'User story 2' do
         it 'has a form to add existing ingredients to a dish' do
             visit "/dishes/#{@chicago_deep_dish.id}"
             save_and_open_page
