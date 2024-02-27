@@ -1,0 +1,16 @@
+
+And I see a list of ingredients for that dish
+and a total calorie count for that dish
+And I see the chef's name.
+<h1>#<%= @dish.id %> - <%= @dish.name %>'s Information</h1>
+
+<h3>Dish Name: <%= @dish.name %></h3>
+<h3>Dish Description: <%= @dish.description %></h3>
+<h3>Dish Calories: <%= @dish.total_calories %></h3>
+<h3>Chef's Name: <%= @dish.chef.name %></h3>
+<h3>Dish Ingredients: </h3>
+<ul>
+  <% @dish.ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+  <% end %>
+</ul>
