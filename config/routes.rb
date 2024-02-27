@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   resources :dishes, only: :show
 
   resources :dish_ingredients, only: :create
+
+  resources :chefs, only: :show
 end
