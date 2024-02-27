@@ -14,23 +14,31 @@ RSpec.describe 'Chef Show Page' do
         @yeast = Ingredient.create!(name: "Yeast")
         @flour = Ingredient.create!(name: "Flour")
 
+        # add dishes to chef
+        @joe.dishes << @cheesecake
+        @joe.dishes << @chicago_deep_dish
+
         # put ingredients with dishes
         @cheesecake.ingredients << @yeast
         @chicago_deep_dish.ingredients << @cinnamon
-        # flour is the one not in any of joe's dishes
+        # flour is the one not in any of joe's ingredients
 
     end
 
     describe 'User story 3' do
         it 'has a link to view all ingredients' do
-            expect(page).to have_content("See all ingredients for Joe")
-            expect(page).to have_link('TEXT', href: path)
+            visit "/chefs/#{@joe.id}"
+
+            save_and_open_page
+            expect(page).to have_content("See all ingredients for this chef")
+            expect(page).to have_link('See all ingredients for this chef', href: "/chefs/#{@joe.id}/ingredients")
         end
 
         it 'redirects to the chef ingredients index page with a list of all ingredients for the chef' do
-            click_on 'See all ingredients for Joe'
+            visit "/chefs/#{@joe.id}"
+            click_on 'See all ingredients for this chef'
             
-            expect(current_path).to_be ""
+            expect(current_path).to_be "/chefs/#{@joe.id}/ingredients"
             expect(page).to have_content("Yeast")
             expect(page).to have_content("Cinnamon")
             expect(page).to_not have_content("Flour")

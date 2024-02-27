@@ -1,6 +1,8 @@
-class ChefIngredients < ApplicationController
+class ChefIngredientsController < ApplicationController
     def index
         @chef = Chef.find(params[:chef_id])
-        @ingredients = @chef.ingredients.distinct
+        @dishes = @chef.dishes
+        @ingredients = @dishes.the_ingredients(params[:chef_id])
     end
+
 end
