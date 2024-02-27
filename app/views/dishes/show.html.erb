@@ -1,0 +1,18 @@
+<h1>#<%= @dish.id %> - <%= @dish.name %>'s Information</h1>
+
+<h3>Dish Name: <%= @dish.name %></h3>
+<h3>Dish Description: <%= @dish.description %></h3>
+<h3>Dish Calories: <%= @dish.total_calories %></h3>
+<h3>Chef's Name: <%= @dish.chef.name %></h3>
+<h3>Dish Ingredients: </h3>
+<ul>
+  <% @dish.ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+  <% end %>
+</ul>
+
+<%= form_with url: dish_ingredients_path(dish_id: @dish.id), method: :post, data: {turbo: false} do |f| %>
+    <%= f.label :add_ingredient, "Add ingredients to dish by ID number:"%>
+    <%= f.text_field :ingredient_id %>
+    <%= f.submit "Submit" %>
+<% end %>
