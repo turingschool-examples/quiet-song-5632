@@ -10,13 +10,13 @@ RSpec.describe 'Dish Show Page' do
         @chicago_deep_dish = Dish.create!(name: "Chicago Deep Dish", description: "The best pizza around", chef: @joe, total_calories: 500)
 
         # create ingredients
-        @cheese = Ingredient.create!(name: "Cheese")
+        @cinnamon = Ingredient.create!(name: "Cinnamon")
         @yeast = Ingredient.create!(name: "Yeast")
         @flour = Ingredient.create!(name: "Flour")
 
         # put ingredients with dishes
         @cheesecake.ingredients << @yeast
-        @chicago_deep_dish.ingredients << @cheese
+        @chicago_deep_dish.ingredients << @cinnamon
         @chicago_deep_dish.ingredients << @flour
     end
 
@@ -39,8 +39,9 @@ RSpec.describe 'Dish Show Page' do
 
         it 'has a list of the dishs ingredients' do
             visit dish_path(@cheesecake)
+            save_and_open_page
             expect(page).to have_content("Yeast")
-            expect(page).to_not have_content("Cheese")
+            expect(page).to_not have_content("Cinnamon")
             expect(page).to_not have_content("Flour")
         end
     end
