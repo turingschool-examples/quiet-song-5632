@@ -19,7 +19,7 @@ RSpec.describe 'Dishes Show Page', type: :feature do
 
       expect(page).to have_content("Name: #{@dish_1.name}")
       expect(page).to have_content("Description: #{@dish_1.description}")
-      expect(page).to have_content("Dish Ingredients: #{@ingredient_1.name}, #{@ingredient_2.name}")
+      expect(page).to have_content("Dish Ingredients: Potato, Heavy Cream")
       expect(page).to have_content("Dish Calories: 200")
       expect(page).to have_content("Created by: #{@chef_1.name}")
     end

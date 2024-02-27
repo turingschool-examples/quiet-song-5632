@@ -1,0 +1,5 @@
+<h1>Name: <%= @dish.name %></h1>
+<h3>Description: <%= @dish.description %></h3>
+<h4>Dish Ingredients: <%= @dish.ingredient_names.join(', ') %></h4>
+<h4>Dish Calories: <%= @dish.dish_calories %></h4>
+<h4>Created by: <%= @dish.chef.name %></h4>
