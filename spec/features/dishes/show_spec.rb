@@ -10,13 +10,13 @@ RSpec.describe "Dish Show Page", type: :feature do
     let!(:ingredient_1) {Ingredient.create!(name: "lettuce", calories: 20)}
     let!(:ingredient_2) {Ingredient.create!(name: "tomato", calories: 30)}
     let!(:ingredient_3) {Ingredient.create!(name: "cheese", calories: 50)}
-    let!(:ingredient_4) {Ingredient.create!(name: "bread", calories: 110)}
+    let!(:ingredient_4) {Ingredient.create!(name: "bread", calories: 100)}
 
     let!(:dish_ingredients_1) {DishIngredient.create!(dish: dish_1, ingredient: ingredient_1)}
-    let!(:dish_ingredients_2) {DishIngredient.create!(dish: dish_1, ingredient: ingredient_2)}
+    let!(:dish_ingredients_2) {DishIngredient.create!(dish: dish_1, ingredient: ingredient_2, quantity: 2)}
     let!(:dish_ingredients_3) {DishIngredient.create!(dish: dish_1, ingredient: ingredient_3)}
     let!(:dish_ingredients_4) {DishIngredient.create!(dish: dish_2, ingredient: ingredient_1)}
-    let!(:dish_ingredients_5) {DishIngredient.create!(dish: dish_2, ingredient: ingredient_4)}
+    let!(:dish_ingredients_5) {DishIngredient.create!(dish: dish_2, ingredient: ingredient_4, quantity: 2)}
 
     before do
       visit dish_path(dish_1)
@@ -37,10 +37,10 @@ RSpec.describe "Dish Show Page", type: :feature do
     end
 
     it "displays dish's total calories" do
-      expect(page).to have_content("Total Calories: 100")
+      expect(page).to have_content("Total Calories: 130")
 
       visit dish_path(dish_2)
-      expect(page).to have_content("Total Calories: 130")
+      expect(page).to have_content("Total Calories: 220")
     end
   end
 end
