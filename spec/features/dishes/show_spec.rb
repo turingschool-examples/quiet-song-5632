@@ -34,8 +34,14 @@ RSpec.describe 'Dish Show Page' do
 
         it 'has the dishs chefs name' do
             visit dish_path(@cheesecake)
-            save_and_open_page
             expect(page).to have_content("Joe")
+        end
+
+        it 'has a list of the dishs ingredients' do
+            visit dish_path(@cheesecake)
+            expect(page).to have_content("Yeast")
+            expect(page).to_not have_content("Cheese")
+            expect(page).to_not have_content("Flour")
         end
     end
 end
