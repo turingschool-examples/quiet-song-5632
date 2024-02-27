@@ -6,6 +6,7 @@ RSpec.describe 'Chefs Show Page', type: :feature do
       @chef_1 = Chef.create!({name: "Marco Pierre White"})
 
       @dish_1 = @chef_1.dishes.create!({name: "Potatoes Gratin", description: "Creamy"})
+      @dish_2 = @chef_1.dishes.create!({name: "Potatoes", description: "Dry"})
 
       @ingredient_1 = Ingredient.create!({name: "Potato", calories: 55})
       @ingredient_2 = Ingredient.create!({name: "Heavy Cream", calories: 145})
@@ -13,6 +14,8 @@ RSpec.describe 'Chefs Show Page', type: :feature do
 
       @dish_ingredient_1 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_1.id})
       @dish_ingredient_2 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_2.id})
+      @dish_ingredient_3 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_3.id})
+      @dish_ingredient_4 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_1.id})
 
       visit chef_path(@chef_1)  
     end
@@ -23,7 +26,7 @@ RSpec.describe 'Chefs Show Page', type: :feature do
       click_link("Chef's Ingredients")
 
       expect(current_path).to eq(chef_ingredients_path(@chef_1))
-      expect(page).to have_content(@ingredient_1.name)
+      expect(page).to have_content(@ingredient_1.name, count: 1)
       expect(page).to have_content(@ingredient_2.name)
       expect(page).to have_content(@ingredient_3.name)
     end
