@@ -34,6 +34,7 @@ RSpec.describe 'Dish Show Page' do
 
         it 'has the dishs chefs name' do
             visit dish_path(@cheesecake)
+            save_and_open_page
             expect(page).to have_content("Joe")
         end
     end
