@@ -34,5 +34,20 @@ RSpec.describe 'Dishes Show Page', type: :feature do
       expect(current_path).to eq(dish_path(@dish_1))
       expect(page).to have_content("Ricotta Cheese")
     end
+
+    it 'has a delete button next to ingredient that when pressed removes the ingredient from the dish' do
+
+      within "#ingredient_#{@ingredient_1.id}" do
+        expect(page).to have_button("Delete")
+      end
+
+      within "#ingredient_#{@ingredient_2.id}" do
+        expect(page).to have_button("Delete")
+        click_on "Delete"
+      end
+
+      expect(page).to have_content(@ingredient_1.name)
+      expect(page).not_to have_content(@ingredient_2.name)
+    end
   end
 end
