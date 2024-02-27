@@ -1,0 +1,23 @@
+<h1>Today's Dishes</h1>
+
+<h3><%= @dish.name %><br> description: <%= @dish.description %></h3>
+
+<h3>Ingredients</h3>
+  <div id="dish-<%= @dish.id %>-ingredients">
+    <% @dish.ingredients.each do |ingredient|%>
+      Name: <%= ingredient.name %>
+      Calories: <%= ingredient.calories %>
+    <%end%>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+    
