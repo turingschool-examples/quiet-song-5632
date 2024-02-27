@@ -8,5 +8,4 @@ class Dish < ApplicationRecord
     ingredient = Ingredient.find(ingredient_id)
     self.ingredients << ingredient
   end
-
-end
+end 
