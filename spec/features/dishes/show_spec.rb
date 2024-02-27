@@ -20,7 +20,9 @@ RSpec.describe 'Dishes Show Page', type: :feature do
     it 'shows the dish name, description, list of ingredients, total calorie count and the chef of the dish' do
       expect(page).to have_content("Name: #{@dish_1.name}")
       expect(page).to have_content("Description: #{@dish_1.description}")
-      expect(page).to have_content("Dish Ingredients: Potato, Heavy Cream")
+      expect(page).to have_content("Dish Ingredients:")
+      expect(page).to have_content(@ingredient_1.name)
+      expect(page).to have_content(@ingredient_2.name)
       expect(page).to have_content("Dish Calories: 200")
       expect(page).to have_content("Created by: #{@chef_1.name}")
     end
@@ -38,12 +40,12 @@ RSpec.describe 'Dishes Show Page', type: :feature do
     it 'has a delete button next to ingredient that when pressed removes the ingredient from the dish' do
 
       within "#ingredient_#{@ingredient_1.id}" do
-        expect(page).to have_button("Delete")
+        expect(page).to have_button("delete")
       end
 
       within "#ingredient_#{@ingredient_2.id}" do
-        expect(page).to have_button("Delete")
-        click_on "Delete"
+        expect(page).to have_button("delete")
+        click_on "delete"
       end
 
       expect(page).to have_content(@ingredient_1.name)

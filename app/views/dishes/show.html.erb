@@ -1,6 +1,14 @@
 <h1>Name: <%= @dish.name %></h1>
 <h3>Description: <%= @dish.description %></h3>
-<h4>Dish Ingredients: <%= @dish.ingredient_names.join(', ') %></h4>
+
+<h4>Dish Ingredients: <ul><% @dish.ingredients.each do |ing| %>
+  <div id="ingredient_<%= ing.id %>">
+    <li><%= ing.name %></li> 
+    <%= button_to "delete", ing.find_dish_ingredient(@dish.id), method: :delete, params: {dish_id: @dish.id} %>
+  </div>
+  <%end%>
+</ul></h4>
+
 <h4>Dish Calories: <%= @dish.dish_calories %></h4>
 <h4>Created by: <%= @dish.chef.name %></h4>
 

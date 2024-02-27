@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :dishes, only: :show
 
-  resources :dish_ingredients, only: :create
+  resources :dish_ingredients, only: [:create, :destroy]
 
   resources :chefs, only: :show do
     resources :ingredients, only: :index
