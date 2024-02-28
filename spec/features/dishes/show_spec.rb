@@ -42,5 +42,20 @@ RSpec.describe "Dish Show Page", type: :feature do
       visit dish_path(dish_2)
       expect(page).to have_content("Total Calories: 220")
     end
+
+    describe "add ingredient to dish" do
+      it "shows form to add ingredient" do
+        expect(page).to have_content("Ingredient ID")
+      end
+
+      it "Add Ingredient Form adds ingredient to dish's show page" do
+        ingredient_5 = Ingredient.create!(name: "carrot", calories: 20)
+        fill_in :item_id, with: item_5.id
+        click_on "Submit"
+
+        expect(page).to have_content("carrot")
+        expect(current_path).to eq(dish_path(dish_1))
+      end
+    end
   end
 end
