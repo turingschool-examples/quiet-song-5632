@@ -10,4 +10,13 @@
 <p>Calorie Count: <%= @dish.total_calories %></p>
 <p>Chef Name: <%= @dish.chef.name %></p>
 
+<p>Add Ingredient</p>
+
+<%= form_with(url: dish_ingredients_path(@dish), method: :post) do |form| %>
+  <%= form.label :ingredient_id %>
+  <%= form.text_field :ingredient_id %>
+
+  <%= form.submit 'Submit' %>
+<% end %>
+
 
