@@ -15,10 +15,11 @@ RSpec.describe "Chef's Show Page", type: :feature do
       @dish_ingredient_2 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_2.id})
       @dish_ingredient_3 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_3.id})
       @dish_ingredient_4 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_4.id})
+      @dish_ingredient_5 = DishIngredient.create!({dish_id: @dish_1.id, ingredient_id: @ingredient_1.id})
     end
     
   describe "User Story 3 - Chef's Show Page" do
-    it "displays a link to view a list of all ingredients that this chef uses in their dishes" do
+    it "displays a link to view a unique list of all ingredients that the chef uses in their dishes" do
 
       visit chef_path(@chef_1.id)
 
