@@ -1,0 +1,16 @@
+<% if @chef %>
+  <h1><%= @chef.name %>'s Ingredients</h1>
+  <ul>
+    <% @chef.unique_ingredients.each do |ing| %>
+      <li><%= ing.name %></li>
+    <% end %>
+  </ul>
+
+<% else %>
+  <h1>All Ingredients</h1>
+  <ul>
+    <% @ingredients.each do |ing| %>
+      <li><%= ing.name %></li>
+    <% end %>
+  </ul>
+<% end %>
