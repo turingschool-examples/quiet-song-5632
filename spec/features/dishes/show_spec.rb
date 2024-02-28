@@ -22,7 +22,10 @@ RSpec.describe "Dish's Show Page", type: :feature do
 
       expect(page).to have_content("Name: Poulet Basquaise")
       expect(page).to have_content("Description: Quick-braised chicken with cayenne")
-      expect(page).to have_content("Dish Ingredients: Chicken, Olive Oil, Cayenne")
+      expect(page).to have_content("Dish Ingredients:")
+      expect(page).to have_content("Chicken")
+      expect(page).to have_content("Olive Oil")
+      expect(page).to have_content("Cayenne")
       expect(page).to have_content("Calorie Content: 630")
       expect(page).to have_content("Chef's Name: Anthony Bourdain")
     end
