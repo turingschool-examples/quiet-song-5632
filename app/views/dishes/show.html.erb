@@ -1,0 +1,34 @@
+<h1><%= @dish.name %></h1>
+<p><%= @dish.description %></p>
+
+<h3>Ingredients</h3>
+<div id="ingredients">
+   <ul>
+   <% @dish.ingredients.each do |ingredient| %>
+      <div id="ingredient_<%= ingredient.id %>">
+      <li><%= ingredient.name %></li>
+      <%= form_with model: @dish, url: destroy_ingredient_dish_path(@dish), method: :delete do |form| %>
+         <%= form.hidden_field :ingredient_id, value: ingredient.id %>
+         <%= form.button "Delete", formmethod: :delete, data: { confirm: "Are you sure?" } %>
+      <% end %>
+      </div>
+      <p>-</p>
+   <% end %>
+   </ul>
+</div>
+
+<div id="total_calories">
+   <h4>Total Calories: <%= @dish.total_calories %></h4>
+</div>
+
+<div id="chef_developer">
+   <h4>Author: <%= @dish.chef.name %></h4>
+</div>
+
+<div id="add_ingredient">
+   <%= form_with model: @dish, url: ingredient_dish_path(@dish), method: :post do |f| %>
+      <%= f.label :ingredient_id, "Add Ingredient to Dish:" %>
+      <%= f.number_field :ingredient_id %>
+      <%= f.submit "Add Ingredient" %>
+   <% end %>
+</div>
