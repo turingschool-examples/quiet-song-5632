@@ -1,0 +1,18 @@
+<h1><b>Welcome to the Dish's Show Page!</b></h1>
+
+<h3><b></b><u>Dish Details</u></b></h3>
+<h3><b></b>Name: </b><%= @dish.name %></h3>
+<p><b>Description: </b><%= @dish.description %></p>
+<p><b>Dish Ingredients: </b>
+<% @dish.ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+  <% end %></p>
+<p><b></b>Calorie Content: </b><%= @dish.dish_calorie_content %></p>
+<p><b>Chef's Name: </b><%= @dish.chef.name %></p><br>
+
+<h3><u></u>Add an Ingredient:</u></h3>
+<%= form_with url: dish_path(@dish.id) , remote: true, method: :patch do |f| %>
+<%= f.label :ingredient_id %>
+<%= f.text_field :ingredient_id %>
+<%= f.submit "Submit" %>
+<% end %>
