@@ -50,7 +50,7 @@ RSpec.describe "Dish Show Page", type: :feature do
 
       it "Add Ingredient Form adds ingredient to dish's show page" do
         ingredient_5 = Ingredient.create!(name: "carrot", calories: 20)
-        fill_in :item_id, with: item_5.id
+        fill_in :ingredient_id, with: ingredient_5.id
         click_on "Submit"
 
         expect(page).to have_content("carrot")

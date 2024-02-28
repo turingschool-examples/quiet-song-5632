@@ -10,3 +10,10 @@
 <% end %>
 
 <b> Total Calories: </b><%= @dish.total_dish_calories %>
+
+<h4> Add Ingredient </h4>
+<%= form_with url: dish_dish_ingredient_path(@dish), method: :patch, local: true, data: {turbo: false} do |form|%>
+  <%= form.label :ingredient_id, "Ingredient ID" %>
+  <%= form.number_field :ingredient_id %><br>
+  <%= form.submit "Submit" %>
+<% end %>
