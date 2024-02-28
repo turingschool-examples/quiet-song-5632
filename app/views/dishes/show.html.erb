@@ -1,0 +1,17 @@
+<li>Name: <%= @dish.name %></li>
+<li>description: <%= @dish.description %></li>
+<li>chef_name: <%= @dish.chef.name %></li>
+<li>total calories count: <%= @dish.total_calories_count %></li>
+<h2> dish_ingredients</h2>
+ <% @dish.table_ingredients.each do |ingredient| %>
+    <li><%= ingredient.name %></li>
+<% end %>
+
+<h3>Add Ingredient to Dish:</h3>
+<%= form_with url: dish_path(@dish), remote: true, method: :patch do |f| %>
+  <%= f.label :table_ingredient_id %>
+  <%= f.text_field :table_ingredient_id %>
+  <%= f.submit "Submit" %>
+<% end %>
+
+
